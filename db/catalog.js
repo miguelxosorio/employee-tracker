@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 // const mysql = require('mysql2');
 const cTable = require('console.table');
+const { message } = require('statuses');
 
 function catalog() {
     // inquirer
@@ -16,6 +17,27 @@ function catalog() {
             "add a role",
             "add an employee",
             "update an employee role"
+        ]
+    })
+    .then((choice) =>{
+       switch (choice.action) {
+        case "view all departments":
+            viewAlldepartments();
+            break;
+        }
+    })
+}
+
+function viewAlldepartments (){
+    inquirer.prompt({
+        name: "department",
+        type: "list",
+        message: 'Which department would you like to choose?',
+        choices: [
+            'Administration',
+            'Engineering',
+            'Accounting',
+            'Sales'
         ]
     })
 }
