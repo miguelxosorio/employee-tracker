@@ -3,7 +3,7 @@ const express = require('express');
 // const mysql = require('mysql2');
 // const cTable = require('console.table');
 const db = require('./db/connection');
-const employeeTracker = require('./db/employeeTracker');
+const catalog = require('./db/catalog');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -14,7 +14,7 @@ db.connect(err => {
     console.log('Database connected.');
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
-      employeeTracker();
+      catalog();
     });
 });
 
