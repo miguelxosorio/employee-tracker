@@ -163,4 +163,18 @@ function updateRole() {
     
 }
 
+// add function to update employee managers
+
+// add function to view employees by manager
+
+// add function to view employees by department
+
+// add function to delete departments
+
+// add function to delete roles,
+
+// add function to delete employees
+
+// add function to view the total utilized budget of a department = combined salaries of employees in that department
+
 module.exports = catalog;

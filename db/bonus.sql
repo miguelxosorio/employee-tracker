@@ -15,11 +15,13 @@
 -- (SELECT role_id FROM role WHERE department_id = (SELECT department_id FROM department WHERE name = 'Engineering'));
 
 -- total utilized budget
-SELECT COUNT(*), department.name, SUM(role.salary)
-FROM employee 
-LEFT JOIN role 
-    ON role.role_id = employee.role_id  
-LEFT JOIN department 
-    ON department.department_id = role.department_id
-WHERE department.name = 'Engineering'
-GROUP BY department.name;
+-- SELECT COUNT(*), department.name, SUM(role.salary)
+-- FROM employee 
+-- LEFT JOIN role 
+--     ON role.role_id = employee.role_id  
+-- LEFT JOIN department 
+--     ON department.department_id = role.department_id
+-- WHERE department.name = 'Engineering'
+-- GROUP BY department.name;
+
+--DELETE FROM department WHERE name = 'TEST DEPT';
