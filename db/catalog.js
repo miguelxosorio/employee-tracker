@@ -24,6 +24,7 @@ function catalog() {
             "view employees by department",
             "delete a department",
             "delete a role",
+            "delete an employee"
         ]
     })
     .then((answer) => {
@@ -53,6 +54,8 @@ function catalog() {
             deleteDepartment();
        } else if (answer.action === "delete a role") {
             deleteRole();
+       } else if (answer.action === "delete an employee") {
+           deleteEmployee();
        }
     })
 }
@@ -268,7 +271,24 @@ function deleteRole() {
 
 // add function to delete employees
 function deleteEmployee(){
-
+    inquirer.prompt([
+        {
+            name:"delEmpFirst",
+            type: "input",
+            message: "what's the employee's first name you want to delete?"
+        },
+        {
+            name:"delEmpLast",
+            type: "input",
+            message: "what's the employee's last name you want to delete?"
+        }
+    ])
+    .then((answer) => {
+        const params = [answer.delEmpFirst, answer.delEmpLast]
+        db.query("DELETE FROM employee WHERE first_name = ? AND last_name = ?", params, (err, data) => {
+            viewAllEmployees();
+        })
+    })
 }
 
 // add function to view the total utilized budget of a department = combined salaries of employees in that department
