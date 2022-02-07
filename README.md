@@ -24,8 +24,8 @@
 
   `git clone`the repo to your local machine, open your terminal on VS code, or use git Bash, navigate to the directory where server.js is located, run `npm i` on the command line to install dependencies, and run `npm start` to initiate the application.
 
-  [Video Link](https://watch.screencastify.com/v/fDlpddBuEWQfpkvbAbIQ)
-  ![Gif](https://github.com/miguelxosorio/employee-tracker/blob/main/assets/images/Untitled_%20Feb%206%2C%202022%2011_39%20PM.gif)
+  * [Video Link](https://watch.screencastify.com/v/fDlpddBuEWQfpkvbAbIQ)
+  * ![Gif](https://github.com/miguelxosorio/employee-tracker/blob/main/assets/images/Untitled_%20Feb%206%2C%202022%2011_39%20PM.gif)
 
   ## License
 
