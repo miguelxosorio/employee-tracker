@@ -24,4 +24,4 @@
 -- WHERE department.name = 'Engineering'
 -- GROUP BY department.name;
 
---DELETE FROM department WHERE name = 'TEST DEPT';
+-- DELETE FROM department WHERE name = 'TEST DEPT';

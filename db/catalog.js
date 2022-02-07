@@ -19,7 +19,10 @@ function catalog() {
             "add a role",
             "add an employee",
             "update an employee role",
-            "update employee manager"
+            "update employee manager",
+            "view employees by manager",
+            "view employees by department",
+            "delete a department"
         ]
     })
     .then((answer) => {
@@ -41,6 +44,12 @@ function catalog() {
             updateRole();
        } else if (answer.action === "update employee manager") {
             updateEmployeeManager();
+       } else if (answer.action === "view employees by manager") {
+            viewEmployeesByManager();
+       } else if (answer.action === "view employees by department") {
+            viewEmployeesByDepartment();
+       } else if (answer.action === "delete a department") {
+            deleteDepartment();
        }
     })
 }
@@ -193,19 +202,48 @@ function updateEmployeeManager() {
     })
 }
 
-// add function to view employees by manager
-function viewEmployeeByManager() {
-    
+// add function to view employees by manager -- need to update function
+function viewEmployeesByManager() {
+    inquirer.prompt([
+        {
+            name:"manFirstName",
+            type: "input",
+            message: "what is the manager's first name?"
+        },
+        {
+            name:"manLastName",
+            type: "input",
+            message: "what is the manager's last name?"
+        }
+    ])
+    .then((answer) => {
+        const params = [answer.manFirstName, answer.manLastName]
+        db.query("SELECT * FROM employee WHERE manager_id = (SELECT employee_id FROM employee WHERE first_name = ? AND last_name = ?)", params, (err, data) => {
+            viewAllEmployees();
+        })
+    })
 }
 
 // add function to view employees by department
-function viewEmployeeByDepartment() {
+function viewEmployeesByDepartment() {
     
 }
 
 // add function to delete departments
 function deleteDepartment() {
-
+    inquirer.prompt([
+        {
+            name: "delDept",
+            type: "input",
+            message: "what department do you want to delete?"
+        }
+    ])
+    .then((answer) => {
+        const params = [answer.delDept]
+        db.query("DELETE FROM department WHERE name = ?", params, (err, data) => {
+            viewAllDepartments();
+        })
+    })
 }
 
 // add function to delete roles,
