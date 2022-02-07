@@ -22,7 +22,8 @@ function catalog() {
             "update employee manager",
             "view employees by manager",
             "view employees by department",
-            "delete a department"
+            "delete a department",
+            "delete a role",
         ]
     })
     .then((answer) => {
@@ -50,6 +51,8 @@ function catalog() {
             viewEmployeesByDepartment();
        } else if (answer.action === "delete a department") {
             deleteDepartment();
+       } else if (answer.action === "delete a role") {
+            deleteRole();
        }
     })
 }
@@ -248,7 +251,19 @@ function deleteDepartment() {
 
 // add function to delete roles,
 function deleteRole() {
-
+    inquirer.prompt([
+        {
+            name: "delRole",
+            type: "input",
+            message: "what role do you want to delete?"
+        }
+    ])
+    .then((answer) => {
+        const params = [answer.delRole]
+        db.query("DELETE FROM role WHERE title = ?", params, (err, data) => {
+            viewAllRoles();
+        })
+    })
 }
 
 // add function to delete employees
