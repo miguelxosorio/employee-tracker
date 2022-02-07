@@ -43,7 +43,6 @@ function catalog() {
 }
 
 function viewAllDepartments (){
-
     db.query("SELECT * FROM department", (err, data) => {
         console.table(data)
         catalog();
