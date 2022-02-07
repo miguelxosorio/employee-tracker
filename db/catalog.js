@@ -24,7 +24,8 @@ function catalog() {
             "view employees by department",
             "delete a department",
             "delete a role",
-            "delete an employee"
+            "delete an employee",
+            "view department budget"
         ]
     })
     .then((answer) => {
@@ -56,6 +57,8 @@ function catalog() {
             deleteRole();
        } else if (answer.action === "delete an employee") {
            deleteEmployee();
+       } else if (answer.action === "view department budget") {
+           viewDepartmentBudget();
        }
     })
 }
@@ -291,9 +294,28 @@ function deleteEmployee(){
     })
 }
 
+function deptBudget() {
+    db.query("SELECT COUNT(*), department.name, SUM(role.salary) FROM employee LEFT JOIN role ON role.role_id = employee.role_id LEFT JOIN department ON department.department_id = role.department_id GROUP BY department.name", (err, data) => {
+        console.table(data)
+        catalog();
+    })
+}
+
 // add function to view the total utilized budget of a department = combined salaries of employees in that department
 function viewDepartmentBudget() {
-
+    inquirer.prompt([
+        {
+            name: "deptBudgetName",
+            type: "input",
+            message: "what department budget do you want to look at?"
+        }
+    ])
+    .then((answer) => {
+        const params = [answer.deptBudgetName]
+        db.query("SELECT COUNT (*), department.name, SUM(role.salary) FROM employee LEFT JOIN role ON role.role_id = employee.role_id LEFT JOIN department ON department.department_id = role.department_id WHERE department.name = ?", params, (err, data) => {
+            deptBudget();
+        })
+    })
 }
 
 module.exports = catalog;
