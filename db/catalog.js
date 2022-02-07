@@ -22,17 +22,17 @@ function catalog() {
     })
     .then((answer) => {
        if(answer.action === "view all departments") {
-           viewAllDepartments();
+            viewAllDepartments();
        } else if (answer.action === "view all roles") {
             viewAllRoles();
        } else if (answer.action === "view all employees") {
-           viewAllEmployees();
+            viewAllEmployees();
        } else if (answer.action === "add a department") {
-           addDept();
+            addDept();
        } else if (answer.action === "add a role") {
-           addRole();
+            addRole();
        } else if (answer.action === "add an employee") {
-           addEmployee();
+            addEmployee();
        } else if (answer.action === "update an employee role") {
             updateRole();
        }
@@ -43,8 +43,7 @@ function viewAllDepartments (){
     db.query("SELECT * FROM department", (err, data) => {
         console.table(data)
         catalog();
-    })
-    
+    })   
 }
 
 function viewAllRoles () {
@@ -123,7 +122,6 @@ function addEmployee () {
             type: "input",
             message: "add your manager's id"
         }
-
     ])
     .then((answer) => {
         const params = [answer.firstname, answer.lastname, answer.roleid, answer.managerid]
