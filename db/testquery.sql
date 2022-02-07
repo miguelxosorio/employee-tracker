@@ -12,4 +12,4 @@ LEFT JOIN role
 LEFT JOIN department 
     ON department.department_id = role.department_id
 LEFT JOIN employee empManager
-    ON empManager.employee_id = employee.manager_id
+    ON empManager.employee_id = employee.manager_id;
