@@ -18,7 +18,8 @@ function catalog() {
             "add a department",
             "add a role",
             "add an employee",
-            "update an employee role"
+            "update an employee role",
+            "update employee manager"
         ]
     })
     .then((answer) => {
@@ -38,6 +39,8 @@ function catalog() {
             addEmployee();
        } else if (answer.action === "update an employee role") {
             updateRole();
+       } else if (answer.action === "update employee manager") {
+            updateEmployeeManager();
        }
     })
 }
@@ -163,18 +166,61 @@ function updateRole() {
     
 }
 
-// add function to update employee managers
+// add function to update employee managers -- NEED TO CORRECT QUERY
+function updateEmployeeManager() {
+    inquirer.prompt([
+        {
+            name: "manFirstName",
+            type: "input",
+            message: "What's the manager's first name?"
+        },
+        {
+            name: "manLastName",
+            type: "input",
+            message: "What's the manager's last name?"
+        },
+        {
+            name: "empId",
+            type: "input",
+            message: "add the employee id you want to where you want to update the manager"
+        }
+    ])
+    .then((answer) => {
+        const params = [answer.manFirstName, answer.manLastName, answer.empId]
+        db.query("UPDATE employee SET manager_id = (SELECT employee_id FROM (SELECT employee_id FROM employee WHERE first_name = ? AND last_name = ?) AS x) WHERE employee_id = ?", params, (err, data) => {
+            viewAllEmployees();
+        })
+    })
+}
 
 // add function to view employees by manager
+function viewEmployeeByManager() {
+    
+}
 
 // add function to view employees by department
+function viewEmployeeByDepartment() {
+    
+}
 
 // add function to delete departments
+function deleteDepartment() {
+
+}
 
 // add function to delete roles,
+function deleteRole() {
+
+}
 
 // add function to delete employees
+function deleteEmployee(){
+
+}
 
 // add function to view the total utilized budget of a department = combined salaries of employees in that department
+function viewDepartmentBudget() {
+
+}
 
 module.exports = catalog;
